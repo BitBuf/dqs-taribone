@@ -32,6 +32,7 @@ minecraft {
 }
 
 repositories {
+    jcenter()
     maven { url = 'https://repo.spongepowered.org/maven' }
 }
 
@@ -43,6 +44,10 @@ dependencies {
         exclude module: 'gson'
         exclude module: 'commons-io'
         exclude module: 'log4j-core'
+    }
+
+    compile ('net.dv8tion:JDA:4.1.1_165') {
+        exclude module: 'opus-java'
     }
 }
 

@@ -27,13 +27,31 @@ compileJava {
 minecraft {
     version = "1.12.2-14.23.5.2847"
     runDir = "run"
+    coreMod = "dev.dewy.taribone.TariboneLoadingPlugin"
     
     mappings = "stable_39"
 }
 
+jar.manifest.attributes(
+        'FMLCorePluginContainsFMLMod': true,
+        'FMLCorePlugin': 'dev.dewy.taribone.TariboneLoadingPlugin',
+        'ForceLoadAsMod': true,
+        'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker'
+)
+
 repositories {
     jcenter()
     maven { url = 'https://repo.spongepowered.org/maven' }
+
+    maven {
+        name = "DaPorkchop_"
+        url = "https://maven.daporkchop.net/"
+    }
+
+    maven {
+        name = 'impactdevelopment-repo'
+        url = 'https://impactdevelopment.github.io/maven/'
+    }
 }
 
 dependencies {
@@ -49,6 +67,11 @@ dependencies {
     compile ('net.dv8tion:JDA:4.1.1_165') {
         exclude module: 'opus-java'
     }
+
+    compile group: 'com.jagrosh', name: 'jda-utilities', version: '3.0.3'
+    compile group: 'net.daporkchop.lib', name: 'binary', version: '0.5.5-SNAPSHOT'
+
+    provided 'cabaletta:baritone-api:1.2'
 }
 
 mixin {
@@ -59,7 +82,7 @@ shadowJar {
     exclude 'dummyThing'
     exclude 'LICENSE.txt'
 
-    classifier = ''
+    classifier = 'all'
 }
 
 build.dependsOn(shadowJar)

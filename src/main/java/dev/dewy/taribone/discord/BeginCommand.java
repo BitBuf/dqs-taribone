@@ -51,7 +51,21 @@ public class BeginCommand extends Command
                 Taribone.shouldExec = true;
 
                 Thread.sleep(10000L);
-                Minecraft.getMinecraft().player.sendChatMessage("#cancel");
+
+                if (Minecraft.getMinecraft().world != null)
+                {
+                    Minecraft.getMinecraft().player.sendChatMessage("#cancel");
+
+                    return;
+                }
+
+                event.reply(new EmbedBuilder()
+                        .setTitle("**DQS** - Session Start Failed")
+                        .setDescription("A new Taribone session could not be started because of a critical error. Debug info has been sent to Dewy and should be fixed soon.")
+                        .setColor(new Color(15221016))
+                        .setFooter("Focused on " + Taribone.CONFIG.taribone.tiedIgn, new URL(String.format("https://crafatar.com/avatars/%s?size=64&overlay&default=MHF_Steve", Taribone.CONFIG.taribone.tiedUuid)).toString())
+                        .setAuthor("DQS " + Taribone.VERSION, null, "https://i.imgur.com/xTd3Ri3.png")
+                        .build());
             } catch (Throwable t)
             {
                 t.printStackTrace();

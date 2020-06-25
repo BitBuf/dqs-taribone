@@ -25,6 +25,19 @@ public class AntiAFKCommand extends Command
         {
             try
             {
+                if (Minecraft.getMinecraft().world == null)
+                {
+                    event.reply(new EmbedBuilder()
+                            .setTitle("**DQS** - Session Not Started")
+                            .setDescription("A session is not currently active. Start one with `&begin`.")
+                            .setColor(new Color(15221016))
+                            .setFooter("Focused on " + Taribone.CONFIG.taribone.tiedIgn)
+                            .setAuthor("DQS " + Taribone.VERSION, null, "https://i.imgur.com/xTd3Ri3.png")
+                            .build());
+
+                    return;
+                }
+
                 event.reply(new EmbedBuilder()
                         .setTitle("**DQS** - AntiAFK")
                         .setDescription("Starting AntiAFK Taribone process...")

@@ -17,8 +17,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
+import org.lwjgl.opengl.Display;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;
@@ -37,7 +39,7 @@ public class Taribone
     public static Config CONFIG;
     public static JDA jda;
     public static boolean shouldExec = false;
-    private static Logger logger;
+    public static Logger logger;
 
     public static synchronized void loadConfig()
     {
@@ -84,6 +86,8 @@ public class Taribone
 
         loadConfig();
 
+        logger.info("Initialising command client...");
+
         if (CONFIG.taribone.subscriberId.equals("default") || CONFIG.taribone.serverIp.equals("default") || CONFIG.taribone.token.equals("default"))
         {
             logger.error("bruh no tonken");
@@ -95,7 +99,7 @@ public class Taribone
 
         commandClient.setPrefix("&");
         commandClient.setOwnerId(CONFIG.taribone.operatorId);
-        commandClient.setActivity(Activity.watching("fit em see"));
+        commandClient.setActivity(Activity.playing("for you!"));
 
         commandClient.setHelpWord("JBjEFIWHB213*£(9Q££())(£$^&$FIRHBWEJDBNCJWHE");
 
@@ -117,6 +121,8 @@ public class Taribone
 
         try
         {
+            logger.info("Starting Discord bot instance...");
+
             jda = new JDABuilder(AccountType.BOT)
                     .setToken(CONFIG.taribone.token)
                     .addEventListeners(commandClient.build())
@@ -125,5 +131,12 @@ public class Taribone
         {
             logger.error(e);
         }
+    }
+
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        logger.info("Setting Taribone display title...");
+        Display.setTitle("Taribone " + CONFIG.taribone.tiedIgn);
     }
 }

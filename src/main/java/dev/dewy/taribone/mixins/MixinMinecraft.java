@@ -21,8 +21,9 @@ public class MixinMinecraft
     {
         if (Minecraft.getMinecraft().ingameGUI != null && Taribone.shouldExec)
         {
-            Taribone.shouldExec = false;
+            Taribone.logger.info("Executing a shouldExec call...");
 
+            Taribone.shouldExec = false;
             Minecraft.getMinecraft().displayGuiScreen(new GuiConnecting(new GuiMainMenu(), Minecraft.getMinecraft(), new ServerData("Taribonal Proxy", Taribone.CONFIG.taribone.serverIp, false)));
         }
     }

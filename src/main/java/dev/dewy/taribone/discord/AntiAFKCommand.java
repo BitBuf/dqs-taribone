@@ -40,7 +40,7 @@ public class AntiAFKCommand extends Command
 
                 event.reply(new EmbedBuilder()
                         .setTitle("**DQS** - AntiAFK")
-                        .setDescription("Starting AntiAFK Taribone process...")
+                        .setDescription("Starting an AntiAFK Taribone process...")
                         .setColor(new Color(10144497))
                         .setFooter("Focused on " + Taribone.CONFIG.taribone.tiedIgn, new URL(String.format("https://crafatar.com/avatars/%s?size=64&overlay&default=MHF_Steve", Taribone.CONFIG.taribone.tiedUuid)).toString())
                         .setAuthor("DQS " + Taribone.VERSION, null, "https://i.imgur.com/pcSOd3K.png")

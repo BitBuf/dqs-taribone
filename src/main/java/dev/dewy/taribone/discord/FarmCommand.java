@@ -40,8 +40,8 @@ public class FarmCommand extends Command
                 }
 
                 event.reply(new EmbedBuilder()
-                        .setTitle("**DQS** - Taribone")
-                        .setDescription("Attempting to start a Taribone farm process...")
+                        .setTitle("**DQS** - Farm")
+                        .setDescription("Starting a Taribone farm process...")
                         .setColor(new Color(10144497))
                         .setFooter("Focused on " + Taribone.CONFIG.taribone.tiedIgn, new URL(String.format("https://crafatar.com/avatars/%s?size=64&overlay&default=MHF_Steve", Taribone.CONFIG.taribone.tiedUuid)).toString())
                         .setAuthor("DQS " + Taribone.VERSION, null, "https://i.imgur.com/pcSOd3K.png")

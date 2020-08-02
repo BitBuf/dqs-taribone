@@ -116,7 +116,8 @@ public class Taribone
                 new PathCommand(),
                 new PauseCommand(),
                 new ResumeCommand(),
-                new StopCommand()
+                new StopCommand(),
+                new MineCommand()
         );
 
         try
